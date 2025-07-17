@@ -1,6 +1,5 @@
-from django.db import models
+# ip_tracking/models.py
 
-# Create your models here.
 from django.db import models
 
 class RequestLog(models.Model):
@@ -10,3 +9,9 @@ class RequestLog(models.Model):
 
     def __str__(self):
         return f"{self.ip_address} @ {self.timestamp} -> {self.path}"
+
+class BlockedIP(models.Model):
+    ip_address = models.GenericIPAddressField(unique=True)
+
+    def __str__(self):
+        return self.ip_address
